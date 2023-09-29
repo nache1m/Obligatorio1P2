@@ -4,10 +4,6 @@
  */
 package Dominio;
 
-/**
- *
- * @author elnac
- */
 public class Jugadas {
-    
+    int soyNacho = 0;
 }
