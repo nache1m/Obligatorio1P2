@@ -1,11 +1,7 @@
 
 package Interfaz;
 
-public class NewClass {
-    public static void main (String args[]){
-        int mat[][] = {{1,2,3,4},{5,2,5,6},{3,6,9,7},{5,8,2,7}};
-        imprimirTablero(mat);
-    }
+public class Menu {
     public static void imprimirTablero(int mat[][]){
         // Indices de columnas
         System.out.print("    ");
