@@ -6,4 +6,5 @@ package Dominio;
 
 public class Jugadas {
     int soyNacho = 0;
+    int soyEze = 0;
 }
