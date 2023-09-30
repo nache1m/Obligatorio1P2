@@ -5,6 +5,26 @@
 package Dominio;
 
 public class Jugadas {
-    int soyNacho = 0;
-    int soyEze = 0;
+    private int indice;
+    private int [][] tablero;
+
+    
+    public int getIndice() {
+        return indice;
+    }
+
+    
+    public void setIndice(int indice) {
+        this.indice = indice;
+    }
+
+    
+    public int[][] getTablero() {
+        return tablero;
+    }
+
+    
+    public void setTablero(int[][] tablero) {
+        this.tablero = tablero;
+    }
 }
