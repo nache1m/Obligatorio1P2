@@ -1,10 +1,11 @@
 
 package Interfaz;
 
+import Dominio.Tablero;
 import java.util.*;
 
 public class Menu {
-    public static void imprimirTablero(int mat[][]){
+    public static void imprimirTablero(String mat[][]){
         // Indices de columnas
         System.out.print("    ");
         for (int j = 0; j < mat[0].length;j++){
@@ -38,7 +39,7 @@ public class Menu {
         int opcion;
         System.out.println("¿Se desea comenzar una nueva partida? (S/N)");
         String deseaJugar = lector.nextLine();
-        if (deseaJugar == "N"){
+        if (deseaJugar.equalsIgnoreCase("N")){
             System.out.println("¡Nos vemos pronto!");
         } else {
             salir = false;
@@ -57,7 +58,10 @@ public class Menu {
                         // Llamada del metodo.
                         break;
                     case 2:
-                        // Llamada del metodo.
+                        Tablero tablero = new Tablero();
+                        imprimirTablero(tablero.getMatrizActual());
+                        tablero.ejectuarMovimiento(tablero.getMatrizActual(), "3,3");
+                        imprimirTablero(tablero.getMatrizActual());
                         break;
                     case 3:
                         // Llamada del metodo.

@@ -4,16 +4,19 @@
  */
 package Interfaz;
 
+import Dominio.Tablero;
+
 /**
  *
  * @author elnac
  */
 public class Prueba {
     public static void main (String [] args) {
-        int [][] mat = { {2,3,4,5}, {4,5,6,7}, {9,5,4,2}};
+        //int [][] mat = { {2,3,4,5}, {4,5,6,7}, {9,5,4,2}};
         
-        Menu.imprimirTablero(mat);
-        
+        //Menu.imprimirTablero(mat);
+        Menu.imprimirMenu();
+       
         
         
         

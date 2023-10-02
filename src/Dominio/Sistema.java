@@ -13,7 +13,6 @@ public class Sistema {
     private String [] posibleSolucion;
     private boolean sigueJugando;
     
-    
     public static void crearTablero() {};
     public static void crearTablero(int col, int fil) {};
     public static void crearTablero(String file) {}; //método que construyetablero con un archivo 
