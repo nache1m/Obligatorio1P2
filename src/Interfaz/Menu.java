@@ -79,4 +79,48 @@ public class Menu {
             }
         }
     }
+    public static void mostrarMovimientoRealizado(String mat1[][], String mat2[][]){
+        System.out.print("    ");
+        for (int j = 0; j < mat1[0].length;j++){
+            System.out.print((j+1)+"   ");
+        }
+        System.out.print("        ");
+        for (int j = 0; j < mat2[0].length;j++){
+            System.out.print((j+1)+"   ");
+        }
+        System.out.println("");
+        System.out.print("  +");
+        for (int j = 0; j < mat1[0].length;j++){
+            System.out.print("---+");
+        }
+        System.out.print(" ==>");
+        System.out.print("   +");
+        for (int j = 0; j < mat2[0].length;j++){
+            System.out.print("---+");
+        }
+        System.out.println("");
+        // Recorro matrices.
+        for (int i=0; i<mat1.length;i++){
+            System.out.print((i+1) + " | ");
+            for (int j=0; j<mat1[0].length;j++){
+                System.out.print(mat1[i][j]+" | ");
+            }
+            System.out.print("==> ");
+            System.out.print((i+1) + " | ");
+            for (int j=0; j<mat2[0].length;j++){
+                System.out.print(mat2[i][j]+" | ");
+            }
+            System.out.println("");
+            System.out.print("  +");
+            for (int k = 0; k < mat1[0].length;k++){
+                System.out.print("---+");
+            }
+            System.out.print(" ==>");
+            System.out.print("   +");
+            for (int k = 0; k < mat2[0].length;k++){
+                System.out.print("---+");
+            }
+            System.out.println("");
+        }
+    }
 }
