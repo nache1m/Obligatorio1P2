@@ -4,6 +4,7 @@ import static Interfaz.Menu.imprimirTablero;
 import java.util.*;
 import java.time.LocalDateTime; 
 import java.time.format.DateTimeFormatter; 
+import java.util.Random;
 
 public class Tablero {
     private LocalDateTime horaInicio;
@@ -21,7 +22,6 @@ public class Tablero {
     private static String rojoL = "\u001B[31m|\u001B[0m";
     private static String azulL = "\u001B[34m|\u001B[0m";
     
-    public static void ejecutarMovimiento(char caracter) {};
     public static void pedirCoord(int fila, int col) {};
     public static void crearMovimiento(int [] [] mat) {};
     
@@ -103,8 +103,51 @@ public class Tablero {
      
     //Métodos
     
-    public Tablero (int fil, int col) {};
+    public Tablero (String filCol, int nivel) {
+   //Creo arrays con caracteres, rojo y azul y filas y columnas. 
+   String[] rojo = { Tablero.getRojoB(), Tablero.getRojoCB(), Tablero.getRojoG(), Tablero.getRojoL()};
+   String [] azul = {Tablero.getAzulB(), Tablero.getAzulCB(), Tablero.getAzulG(), Tablero.getAzulL()};
+   String [] array = filCol.split(",");
+   int fil = Integer.valueOf(array[0]);
+   int col = Integer.valueOf(array[1]);
+   
+   //Elijo si la solución final va a ser roja o azul
+   if (Integer.valueOf(array[0]) % 2 == 0) {
+       array = rojo;
+   } else {
+       array = azul;
+   }
+    
+   //Creo matriz al azar
+   String [][] mat = new String [fil][col];
+   
+   for (int i =0; i<mat.length; i++) {
+       for (int j =0; j<mat[i].length; j++) {
+            Random random = new Random();
+            int randomNumber = random.nextInt(4);
+            mat[i][j] = array[randomNumber];
+       }
+   }
+   
+   //Modifico matriz tantas veces cómo diga el nivel y la seteo a mi atributo.
+   
+   for(int i =0; i<nivel; i++) {
+       String movimiento = "";
+       Random random = new Random();
+       int j = random.nextInt(mat.length);
+       movimiento+= j + ",";
+       int k = random.nextInt(mat[0].length);
+       movimiento+=k;
+       this.ejectuarMovimiento(mat, movimiento);
+   }
+   
+  this.setMatrizActual(mat);
+   
+    };
+    
     public Tablero (int [][] mat) {};
+    
+    
     
     
     public Tablero () {
@@ -217,13 +260,7 @@ public class Tablero {
       
      
      }
-     public static void modificarLinea(String movimiento) {
-         
-         //identifico que caracter está en el movimiento que me dicen
-         //llamo al metodo que me dice que accion ejecutar
-     
-     
-     }
+  
 }
 
   

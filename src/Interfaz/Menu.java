@@ -58,10 +58,10 @@ public class Menu {
                         // Llamada del metodo.
                         break;
                     case 2:
-                        Tablero tablero = new Tablero();
+                        Tablero tablero = new Tablero("5,6", 7);
+                        Tablero tablero1 = new Tablero("9,9", 1);
                         imprimirTablero(tablero.getMatrizActual());
-                        tablero.ejectuarMovimiento(tablero.getMatrizActual(), "3,3");
-                        imprimirTablero(tablero.getMatrizActual());
+                        imprimirTablero(tablero1.getMatrizActual());
                         break;
                     case 3:
                         // Llamada del metodo.
