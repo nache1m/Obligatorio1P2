@@ -1,6 +1,7 @@
 
 package Interfaz;
 
+import Dominio.Sistema;
 import Dominio.Tablero;
 import java.util.*;
 
@@ -58,9 +59,12 @@ public class Menu {
                         // Llamada del metodo.
                         break;
                     case 2:
+                        Sistema sistema = new Sistema();
                         Tablero tablero = new Tablero("5,6", 7);
                         Tablero tablero1 = new Tablero("9,9", 1);
+                        sistema.setTablero(tablero);
                         imprimirTablero(tablero.getMatrizActual());
+                        sistema.soluciónTablero();
                         imprimirTablero(tablero1.getMatrizActual());
                         break;
                     case 3:

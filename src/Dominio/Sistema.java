@@ -9,7 +9,8 @@ public class Sistema {
     private Tablero tablero;
     private ArrayList<Jugadas> jugadas;
     private LocalDateTime horaInicio = LocalDateTime.now();
-    private String [] listaMovimientos;
+    private String [] listaMovimientos= new String [100];
+    private int nroMovimiento;
     private String [] posibleSolucion;
     private boolean sigueJugando;
     
@@ -22,7 +23,10 @@ public class Sistema {
     public static void retroceder() {};
     public static void terminaJuego() {};
 
-    
+    public void ejecutarJugada(String movimiento) {
+        this.tablero.ejectuarMovimiento(this.tablero.getMatrizActual(), movimiento);
+        this.setListaMovimientos(movimiento);
+    };
     public Tablero getTablero() {
         return tablero;
     }
@@ -58,8 +62,9 @@ public class Sistema {
     }
 
     
-    public void setListaMovimientos(String[] listaMovimientos) {
-        this.listaMovimientos = listaMovimientos;
+    public void setListaMovimientos(String movimientos) {
+        this.listaMovimientos[this.nroMovimiento] = movimientos;
+        this.nroMovimiento++;
     }
 
    
@@ -80,5 +85,14 @@ public class Sistema {
     
     public void setSigueJugando(boolean sigueJugando) {
         this.sigueJugando = sigueJugando;
+    }
+    
+    public void soluciónTablero() {
+        String [] array = tablero.getSolucion();
+        System.out.print("La solución es los movimientos: ");
+        for (int i = 0; i<array.length; i++) {
+        System.out.print(array[i] + " ");
+        }
+        System.out.println("");
     }
 }

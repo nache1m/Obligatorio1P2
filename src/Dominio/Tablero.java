@@ -12,15 +12,15 @@ public class Tablero {
     private int nivel;
     private String [][] matrizActual;
     private LocalDateTime horaFinal;
-    
-    private static String rojoG = "\u001B[31m-\u001B[0m";
-    private static String azulG = "\u001B[34m-\u001B[0m";
-    private static String rojoB = "\u001B[31m/\u001B[0m";
-    private static String azulB = "\u001B[34m/\u001B[0m";
-    private static String rojoCB = "\u001B[31m\\\u001B[0m";
-    private static String azulCB = "\u001B[34m\\\u001B[0m";
-    private static String rojoL = "\u001B[31m|\u001B[0m";
-    private static String azulL = "\u001B[34m|\u001B[0m";
+    private String [] solucion;
+    private  String rojoG = "\u001B[31m-\u001B[0m";
+    private  String azulG = "\u001B[34m-\u001B[0m";
+    private String rojoB = "\u001B[31m/\u001B[0m";
+    private  String azulB = "\u001B[34m/\u001B[0m";
+    private  String rojoCB = "\u001B[31m\\\u001B[0m";
+    private  String azulCB = "\u001B[34m\\\u001B[0m";
+    private  String rojoL = "\u001B[31m|\u001B[0m";
+    private  String azulL = "\u001B[34m|\u001B[0m";
     
     public static void pedirCoord(int fila, int col) {};
     public static void crearMovimiento(int [] [] mat) {};
@@ -30,35 +30,35 @@ public class Tablero {
     //Getters y Setters
     
     
-    public static String getRojoG() {
-        return rojoG;
+    public String getRojoG() {
+        return this.rojoG;
     }
 
-    public static String getAzulG() {
+    public  String getAzulG() {
         return azulG;
     }
 
-    public static String getRojoB() {
+    public  String getRojoB() {
         return rojoB;
     }
 
-    public static String getAzulB() {
+    public  String getAzulB() {
         return azulB;
     }
 
-    public static String getRojoCB() {
+    public  String getRojoCB() {
         return rojoCB;
     }
 
-    public static String getAzulCB() {
+    public  String getAzulCB() {
         return azulCB;
     }
 
-    public static String getRojoL() {
+    public  String getRojoL() {
         return rojoL;
     }
 
-    public static String getAzulL() {
+    public  String getAzulL() {
         return azulL;
     }
       public LocalDateTime getHoraInicio() {
@@ -103,10 +103,10 @@ public class Tablero {
      
     //Métodos
     
-    public Tablero (String filCol, int nivel) {
+   public Tablero (String filCol, int nivel) {
    //Creo arrays con caracteres, rojo y azul y filas y columnas. 
-   String[] rojo = { Tablero.getRojoB(), Tablero.getRojoCB(), Tablero.getRojoG(), Tablero.getRojoL()};
-   String [] azul = {Tablero.getAzulB(), Tablero.getAzulCB(), Tablero.getAzulG(), Tablero.getAzulL()};
+   String[] rojo = { this.getRojoB(), this.getRojoCB(), this.getRojoG(), this.getRojoL()};
+   String [] azul = {this.getAzulB(), this.getAzulCB(), this.getAzulG(), this.getAzulL()};
    String [] array = filCol.split(",");
    int fil = Integer.valueOf(array[0]);
    int col = Integer.valueOf(array[1]);
@@ -129,8 +129,9 @@ public class Tablero {
        }
    }
    
-   //Modifico matriz tantas veces cómo diga el nivel y la seteo a mi atributo.
-   
+   //Modifico matriz tantas veces cómo diga el nivel y la seteo a mi atributo. 
+   //Crea array con las soluciones para el ejercicio.
+   solucion = new String [nivel];
    for(int i =0; i<nivel; i++) {
        String movimiento = "";
        Random random = new Random();
@@ -138,6 +139,7 @@ public class Tablero {
        movimiento+= j + ",";
        int k = random.nextInt(mat[0].length);
        movimiento+=k;
+       solucion[i] = movimiento;
        this.ejectuarMovimiento(mat, movimiento);
    }
    
@@ -260,6 +262,15 @@ public class Tablero {
       
      
      }
+
+    public String[] getSolucion() {
+        
+        return solucion;
+    }
+
+    public void setSolucion(String[] solucion) {
+        this.solucion = solucion;
+    }
   
 }
 
