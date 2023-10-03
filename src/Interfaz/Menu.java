@@ -59,13 +59,18 @@ public class Menu {
                         // Llamada del metodo.
                         break;
                     case 2:
+                        System.out.println("¡Que empiece el juego!");
                         Sistema sistema = new Sistema();
-                        Tablero tablero = new Tablero("5,6", 7);
-                        Tablero tablero1 = new Tablero("9,9", 1);
+                        Tablero tablero = new Tablero("5,6", 3);
                         sistema.setTablero(tablero);
                         imprimirTablero(tablero.getMatrizActual());
-                        sistema.soluciónTablero();
-                        imprimirTablero(tablero1.getMatrizActual());
+                        int fila = lector.nextInt();
+                        int col = lector.nextInt();
+                        String mov = fila+","+col;
+                        String mat [][] = clonarMatriz(tablero.getMatrizActual());
+                        Tablero tablero1 = new Tablero (mat);
+                        tablero1.ejectuarMovimiento(mat, mov);
+                        mostrarMovimientoRealizado(tablero.getMatrizActual(), mat);
                         break;
                     case 3:
                         // Llamada del metodo.
@@ -126,5 +131,12 @@ public class Menu {
             }
             System.out.println("");
         }
+    }
+    public static String[][] clonarMatriz(String mat[][]){
+        String clonada[][] = mat.clone();
+        for (int i=0; i < mat.length;i++){
+            clonada[i] = mat[i].clone();
+        }
+        return clonada;
     }
 }

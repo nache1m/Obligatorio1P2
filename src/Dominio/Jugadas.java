@@ -9,6 +9,7 @@ public class Jugadas {
     private int [][] tablero;
 
     
+    
     public int getIndice() {
         return indice;
     }
