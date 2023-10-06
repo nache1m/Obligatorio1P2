@@ -5,11 +5,10 @@
 package Dominio;
 
 public class Jugadas {
-    private int indice;
-    private int [][] tablero;
-
+    private int indice = 1;
+    private String [][] tablero;
     
-    
+    //Gets y Sets
     public int getIndice() {
         return indice;
     }
@@ -20,12 +19,19 @@ public class Jugadas {
     }
 
     
-    public int[][] getTablero() {
+    public String [][] getTablero() {
         return tablero;
     }
 
     
-    public void setTablero(int[][] tablero) {
+    public void setTablero(String [][] tablero) {
         this.tablero = tablero;
+    }
+    
+    public Jugadas (Tablero tablero) {
+    this.tablero = tablero.getMatrizActual();
+    indice++;
+            
+    
     }
 }
