@@ -9,18 +9,24 @@ public class Prueba {
        Menu.imprimirMenu();
     }
     
-    public static void realizarMovimiento(){
-        Scanner lector = new Scanner(System.in);
-        Sistema sistema = new Sistema();
-        Tablero tablero = new Tablero("5,6", 3);
-        sistema.setTablero(tablero);
+    public static void realizarMovimiento(Tablero tablero){
+        int cont = 0;
+        int nivel = tablero.getNivel();
         imprimirTablero(tablero.getMatrizActual());
-        int fila = lector.nextInt();
-        int col = lector.nextInt();
-        String mov = fila+","+col;
-        String mat [][] = clonarMatriz(tablero.getMatrizActual());
-        Tablero tablero1 = new Tablero (mat);
-        tablero1.ejectuarMovimiento(mat, mov);
-        mostrarMovimientoRealizado(tablero.getMatrizActual(), mat);
+        System.out.println("Ingrese fila (ENTER) y luego la columna (ENTER):");
+        System.out.println(tablero.delMismoColor());
+        while (!tablero.delMismoColor()) {
+            System.out.println("prueba");
+            Scanner lector = new Scanner(System.in);
+            String fila = lector.nextLine();
+            String col = lector.nextLine();
+            String mov = fila + "," + col;
+            String mat[][] = clonarMatriz(tablero.getMatrizActual());
+            Jugadas j = new Jugadas(mat);
+            tablero.ejectuarMovimiento(tablero.getMatrizActual(), mov);
+            mostrarMovimientoRealizado(mat,tablero.getMatrizActual());
+            cont++;
+        }
+        imprimirTablero(tablero.getMatrizActual());
     }
 }

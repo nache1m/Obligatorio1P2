@@ -24,7 +24,7 @@ public class Tablero {
     private String rojoL = "\u001B[31m|\u001B[0m";
     private String azulL = "\u001B[34m|\u001B[0m";
 
-    private boolean delMismoColor = false;
+    private boolean delMismoColor = true;
 
     public static void crearMovimiento(int[][] mat) {
     }
@@ -207,72 +207,73 @@ public class Tablero {
         boolean stop = false;
         String[] posiciones = Movimiento.split(",");
         int i = Integer.valueOf(posiciones[0]) - 1;
-        int j = Integer.valueOf(posiciones[1]) -1 ;
+        int j = Integer.valueOf(posiciones[1]) - 1;
         String objeto = mat[i][j];
-        if ( i != 0 && j != 0) {
-        //Guion
-        if (objeto.equals("\u001B[31m-\u001B[0m") || objeto.equals("\u001B[34m-\u001B[0m")) {
-            for (int k = 0; k < mat[0].length; k++) {
-                mat[i][k] = Tablero.cambiarColor(mat[i][k]);
-            }
-        }
-
-        if (objeto.equals("\u001B[31m/\u001B[0m") || objeto.equals("\u001B[34m/\u001B[0m")) {
-            //Arriba a la derecha
-            int fIndice = i;
-            int cIndice = j;
-
-            while (fIndice >= 0 && fIndice < mat.length && cIndice >= 0 && cIndice < mat[0].length && !stop) {
-                mat[fIndice][cIndice] = Tablero.cambiarColor(mat[fIndice][cIndice]);
-
-                fIndice -= 1;
-                cIndice += 1;
+        if (i > -2 && j > -2) {
+            //Guion
+            if (objeto.equals("\u001B[31m-\u001B[0m") || objeto.equals("\u001B[34m-\u001B[0m")) {
+                for (int k = 0; k < mat[0].length; k++) {
+                    mat[i][k] = Tablero.cambiarColor(mat[i][k]);
+                }
             }
 
-            //Abajo a la izquierda
-            fIndice = i + 1;
-            cIndice = j - 1;
+            if (objeto.equals("\u001B[31m/\u001B[0m") || objeto.equals("\u001B[34m/\u001B[0m")) {
+                //Arriba a la derecha
+                int fIndice = i;
+                int cIndice = j;
 
-            while (fIndice >= 0 && fIndice < mat.length && cIndice >= 0 && cIndice < mat[0].length && !stop) {
-                mat[fIndice][cIndice] = Tablero.cambiarColor(mat[fIndice][cIndice]);
+                while (fIndice >= 0 && fIndice < mat.length && cIndice >= 0 && cIndice < mat[0].length && !stop) {
+                    mat[fIndice][cIndice] = Tablero.cambiarColor(mat[fIndice][cIndice]);
 
-                fIndice += 1;
-                cIndice -= 1;
+                    fIndice -= 1;
+                    cIndice += 1;
+                }
+
+                //Abajo a la izquierda
+                fIndice = i + 1;
+                cIndice = j - 1;
+
+                while (fIndice >= 0 && fIndice < mat.length && cIndice >= 0 && cIndice < mat[0].length && !stop) {
+                    mat[fIndice][cIndice] = Tablero.cambiarColor(mat[fIndice][cIndice]);
+
+                    fIndice += 1;
+                    cIndice -= 1;
+                }
+
+            }; //Barra
+
+            if (objeto.equals("\u001B[31m\\\u001B[0m") || objeto.equals("\u001B[34m\\\u001B[0m")) {
+
+                //Arriba a la izquierda
+                int fIndice = i;
+                int cIndice = j;
+
+                while (fIndice >= 0 && fIndice < mat.length && cIndice >= 0 && cIndice < mat[0].length && !stop) {
+                    mat[fIndice][cIndice] = Tablero.cambiarColor(mat[fIndice][cIndice]);
+
+                    fIndice -= 1;
+                    cIndice -= 1;
+                }
+
+                //Abajo a la derecha
+                fIndice = i + 1;
+                cIndice = j + 1;
+
+                while (fIndice >= 0 && fIndice < mat.length && cIndice >= 0 && cIndice < mat[0].length && !stop) {
+                    mat[fIndice][cIndice] = Tablero.cambiarColor(mat[fIndice][cIndice]);
+
+                    fIndice += 1;
+                    cIndice += 1;
+                }
+            }; //ContraBarra
+
+            if (objeto.equals("\u001B[31m|\u001B[0m") || objeto.equals("\u001B[34m|\u001B[0m")) {
+
+                for (int k = 0; k < mat.length; k++) {
+                    mat[k][j] = Tablero.cambiarColor(mat[k][j]);
+                }
             }
-
-        }; //Barra
-
-        if (objeto.equals("\u001B[31m\\\u001B[0m") || objeto.equals("\u001B[34m\\\u001B[0m")) {
-
-            //Arriba a la izquierda
-            int fIndice = i;
-            int cIndice = j;
-
-            while (fIndice >= 0 && fIndice < mat.length && cIndice >= 0 && cIndice < mat[0].length && !stop) {
-                mat[fIndice][cIndice] = Tablero.cambiarColor(mat[fIndice][cIndice]);
-
-                fIndice -= 1;
-                cIndice -= 1;
-            }
-
-            //Abajo a la derecha
-            fIndice = i + 1;
-            cIndice = j + 1;
-
-            while (fIndice >= 0 && fIndice < mat.length && cIndice >= 0 && cIndice < mat[0].length && !stop) {
-                mat[fIndice][cIndice] = Tablero.cambiarColor(mat[fIndice][cIndice]);
-
-                fIndice += 1;
-                cIndice += 1;
-            }
-        }; //ContraBarra
-
-        if (objeto.equals("\u001B[31m|\u001B[0m") || objeto.equals("\u001B[34m|\u001B[0m")) {
-
-            for (int k = 0; k < mat.length; k++) {
-                mat[k][j] = Tablero.cambiarColor(mat[k][j]);
-            }
-        }}; //Linea
+        }; //Linea
 
     }
 
@@ -286,22 +287,21 @@ public class Tablero {
     }
 
     public boolean delMismoColor() {
-        this.delMismoColor = true;
-        
+        boolean ret = false;
         String[] rojo = {this.getRojoB(), this.getRojoCB(), this.getRojoG(), this.getRojoL()};
         String[] azul = {this.getAzulB(), this.getAzulCB(), this.getAzulG(), this.getAzulL()};
 
         String color = this.matrizActual[0][0];
-        String [] array = null;
+        String[] array = null;
         //Me fijo de que color es la matriz.
         for (int i = 0; i < rojo.length; i++) {
-            if (color == rojo[i]) {
+            if (color.equals(rojo[i])) {
                 array = rojo;
             }
         }
 
         for (int i = 0; i < azul.length; i++) {
-            if (color == azul[i]) {
+            if (color.equals(azul[i])) {
                 array = azul;
             }
         }
@@ -310,17 +310,19 @@ public class Tablero {
         for (int i = 0; i < this.matrizActual.length && !this.delMismoColor; i++) {
             for (int j = 0; j < this.matrizActual[0].length && !this.delMismoColor; j++) {
                 boolean esta = false;
-                for(int k =0; k < array.length; k++) {
-                    if (color == array [i]) {
+                for (int k = 0; k < array.length; k++) {
+                    if (this.matrizActual[i][j].equals(array[k])) {
                         esta = true;
                     }
-                 if (!esta) {
-                     this.delMismoColor = false;
-                 }   
+
+                }
+                if (!esta) {
+                    ret = false;
                 }
             }
         }
-        return this.delMismoColor;
+        this.delMismoColor = ret;
+        return ret;
     }
 
 }

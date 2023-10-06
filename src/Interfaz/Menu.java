@@ -32,9 +32,12 @@ public class Menu {
                         // Llamada del metodo.
                         break;
                     case 2:
-                        // Crear tablero
+                        Sistema sistema = new Sistema();
+                        Tablero tablero = new Tablero();
+                        sistema.setTablero(tablero);
+                        tablero.setNivel(3);
                         System.out.println("¡Que empiece el juego!");
-                        Prueba.realizarMovimiento();
+                        Prueba.realizarMovimiento(tablero);
                         break;
                     case 3:
                         // Llamada del metodo.
