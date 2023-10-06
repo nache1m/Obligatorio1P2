@@ -6,6 +6,53 @@ import Dominio.Tablero;
 import java.util.*;
 
 public class Menu {
+    
+    public static void imprimirMenu(){
+        Scanner lector = new Scanner(System.in);
+        boolean salir = true;
+        int opcion;
+        System.out.println("¿Se desea comenzar una nueva partida? (S/N)");
+        String deseaJugar = lector.nextLine();
+        if (deseaJugar.equalsIgnoreCase("N")){
+            System.out.println("¡Nos vemos pronto!");
+        } else {
+            salir = false;
+            while(!salir){
+                System.out.println("1. Tomar datos desde un archivo.");
+                System.out.println("2. Usar tablero predefinido.");
+                System.out.println("3. Usar tablero al azar.");
+                System.out.println("4. Salir del menú.");
+            try {
+ 
+                System.out.println("Escribe una de las opciones");
+                opcion = lector.nextInt();
+ 
+                switch (opcion) {
+                    case 1:
+                        // Llamada del metodo.
+                        break;
+                    case 2:
+                        // Crear tablero
+                        System.out.println("¡Que empiece el juego!");
+                        Prueba.realizarMovimiento();
+                        break;
+                    case 3:
+                        // Llamada del metodo.
+                        break;
+                    case 4:
+                        salir = true;
+                        break;
+                    default:
+                        System.out.println("Debe ingresar un número entre 1 y 4.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Debes insertar un número");
+                lector.next();
+                }
+            }
+        }
+    }
+    
     public static void imprimirTablero(String mat[][]){
         // Indices de columnas
         System.out.print("    ");
@@ -34,60 +81,6 @@ public class Menu {
         }
     }
     
-    public static void imprimirMenu(){
-        Scanner lector = new Scanner(System.in);
-        boolean salir = true;
-        int opcion;
-        System.out.println("¿Se desea comenzar una nueva partida? (S/N)");
-        String deseaJugar = lector.nextLine();
-        if (deseaJugar.equalsIgnoreCase("N")){
-            System.out.println("¡Nos vemos pronto!");
-        } else {
-            salir = false;
-            while(!salir){
-                System.out.println("1. Tomar datos desde un archivo.");
-                System.out.println("2. Usar tablero predefinido.");
-                System.out.println("3. Usar tablero al azar.");
-                System.out.println("4. Salir del menú.");
-            try {
- 
-                System.out.println("Escribe una de las opciones");
-                opcion = lector.nextInt();
- 
-                switch (opcion) {
-                    case 1:
-                        // Llamada del metodo.
-                        break;
-                    case 2:
-                        System.out.println("¡Que empiece el juego!");
-                        Sistema sistema = new Sistema();
-                        Tablero tablero = new Tablero("5,6", 3);
-                        sistema.setTablero(tablero);
-                        imprimirTablero(tablero.getMatrizActual());
-                        int fila = lector.nextInt();
-                        int col = lector.nextInt();
-                        String mov = fila+","+col;
-                        String mat [][] = clonarMatriz(tablero.getMatrizActual());
-                        Tablero tablero1 = new Tablero (mat);
-                        tablero1.ejectuarMovimiento(mat, mov);
-                        mostrarMovimientoRealizado(tablero.getMatrizActual(), mat);
-                        break;
-                    case 3:
-                        // Llamada del metodo.
-                        break;
-                    case 4:
-                        salir = true;
-                        break;
-                    default:
-                        System.out.println("Debe ingresar un número entre 1 y 4.");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Debes insertar un número");
-                lector.next();
-                }
-            }
-        }
-    }
     public static void mostrarMovimientoRealizado(String mat1[][], String mat2[][]){
         System.out.print("    ");
         for (int j = 0; j < mat1[0].length;j++){
