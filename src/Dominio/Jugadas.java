@@ -43,15 +43,17 @@ public class Jugadas {
         //Guion
         if (objeto.equals("\u001B[31m-\u001B[0m") || objeto.equals("\u001B[34m-\u001B[0m")) {
             for (int k = 0; k < mat[0].length; k++) {
-                
+                if (j != k) {
                 mat[i][k] = Tablero.cambiarColor(mat[i][k]);
+                }
+                
             }
         }
 
         if (objeto.equals("\u001B[31m/\u001B[0m") || objeto.equals("\u001B[34m/\u001B[0m")) {
             //Arriba a la derecha
-            int fIndice = i;
-            int cIndice = j;
+            int fIndice = i -1 ;
+            int cIndice = j + 1;
 
             while (fIndice >= 0 && fIndice < mat.length && cIndice >= 0 && cIndice < mat[0].length && !stop) {
                 mat[fIndice][cIndice] = Tablero.cambiarColor(mat[fIndice][cIndice]);
@@ -76,8 +78,8 @@ public class Jugadas {
         if (objeto.equals("\u001B[31m\\\u001B[0m") || objeto.equals("\u001B[34m\\\u001B[0m")) {
 
             //Arriba a la izquierda
-            int fIndice = i;
-            int cIndice = j;
+            int fIndice = i -1;
+            int cIndice = j -1;
 
             while (fIndice >= 0 && fIndice < mat.length && cIndice >= 0 && cIndice < mat[0].length && !stop) {
                 mat[fIndice][cIndice] = Tablero.cambiarColor(mat[fIndice][cIndice]);
@@ -101,8 +103,9 @@ public class Jugadas {
         if (objeto.equals("\u001B[31m|\u001B[0m") || objeto.equals("\u001B[34m|\u001B[0m")) {
 
             for (int k = 0; k < mat.length; k++) {
+                if (k != i) {
                 mat[k][j] = Tablero.cambiarColor(mat[k][j]);
-            }
+            }}
         }}; //Linea
 
     }
