@@ -28,8 +28,8 @@ public class Jugadas {
         this.tablero = tablero;
     }
     
-    public Jugadas (Tablero tablero) {
-    this.tablero = tablero.getMatrizActual();
+    public Jugadas (String [] [] tablero) {
+    this.tablero = tablero;
     indice++;
             
     

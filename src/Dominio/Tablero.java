@@ -7,9 +7,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 public class Tablero {
+    
     private LocalDateTime horaInicio;
     private int fila;
     private int nivel;
+    
     private String [][] matrizActual;
     private LocalDateTime horaFinal;
     private String [] solucion;
@@ -21,6 +23,8 @@ public class Tablero {
     private  String azulCB = "\u001B[34m\\\u001B[0m";
     private  String rojoL = "\u001B[31m|\u001B[0m";
     private  String azulL = "\u001B[34m|\u001B[0m";
+    
+    private boolean delMismoColor = false;
     
     public static void crearMovimiento(int [] [] mat) {};
     
@@ -183,8 +187,8 @@ public class Tablero {
      public void ejectuarMovimiento (String [][] mat, String Movimiento) {
          boolean stop = false;
          String [] posiciones = Movimiento.split(",");
-         int i = Integer.valueOf(posiciones[0]);
-         int j = Integer.valueOf(posiciones[1]);
+         int i = Integer.valueOf(posiciones[0]+1);
+         int j = Integer.valueOf(posiciones[1]+1);
          String objeto = mat[i][j];
          
          //Guion
@@ -269,6 +273,16 @@ public class Tablero {
 
     public void setSolucion(String[] solucion) {
         this.solucion = solucion;
+    }
+    
+    public boolean delMismoColor () {
+    
+      String[] rojo = { this.getRojoB(), this.getRojoCB(), this.getRojoG(), this.getRojoL()};
+      String [] azul = {this.getAzulB(), this.getAzulCB(), this.getAzulG(), this.getAzulL()};
+      
+      
+      
+      return this.delMismoColor;
     }
   
 }
