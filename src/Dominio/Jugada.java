@@ -4,7 +4,7 @@
  */
 package Dominio;
 
-public class Jugadas {
+public class Jugada {
     private int indice = 1;
     private String [][] tablero;
     
@@ -28,7 +28,7 @@ public class Jugadas {
         this.tablero = tablero;
     }
     
-    public Jugadas (String [] [] tablero) {
+    public Jugada (String [] [] tablero) {
     this.tablero = tablero;
     indice++;
     }

@@ -7,7 +7,7 @@ public class Sistema {
     
     
     private Tablero tablero;
-    private ArrayList<Jugadas> jugadas;
+    private ArrayList<Jugada> listaJugadas;
     private LocalDateTime horaInicio = LocalDateTime.now();
     private String [] listaMovimientos= new String [100];
     private int nroMovimiento;
@@ -17,12 +17,14 @@ public class Sistema {
     public static void crearTablero() {};
     public static void crearTablero(int col, int fil) {};
     public static void crearTablero(String file) {}; //método que construyetablero con un archivo 
-    public Sistema() {};
     public static void mensajeFinal() {};
     public static void sigueJugando() {};
     public static void retroceder() {};
     public static void terminaJuego() {};
-
+    
+    public Sistema(){
+        listaJugadas = new ArrayList();
+    }
     public void ejecutarJugada(String movimiento) {
         this.tablero.ejectuarMovimiento(this.tablero.getMatrizActual(), movimiento);
         this.setListaMovimientos(movimiento);
@@ -37,16 +39,12 @@ public class Sistema {
     }
 
     
-    public ArrayList<Jugadas> getJugadas() {
-        return jugadas;
+    public ArrayList<Jugada> getJugadas() {
+        return listaJugadas;
     }
-
-    
-    public void setJugadas(ArrayList<Jugadas> jugadas) {
-        this.jugadas = jugadas;
+    public void agregarJugada(Jugada j){
+        listaJugadas.add(j);
     }
-
-   
     public LocalDateTime getHoraInicio() {
         return horaInicio;
     }

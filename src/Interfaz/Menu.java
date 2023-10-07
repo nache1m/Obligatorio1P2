@@ -37,7 +37,7 @@ public class Menu {
                         sistema.setTablero(tablero);
                         tablero.setNivel(3);
                         System.out.println("¡Que empiece el juego!");
-                        Prueba.realizarMovimiento(tablero);
+                        Prueba.realizarMovimiento(tablero, sistema);
                         break;
                     case 3:
                         // Llamada del metodo.
