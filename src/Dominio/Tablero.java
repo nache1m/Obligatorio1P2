@@ -24,7 +24,6 @@ public class Tablero {
     private String rojoL = "\u001B[31m|\u001B[0m";
     private String azulL = "\u001B[34m|\u001B[0m";
 
-    private boolean delMismoColor = true;
 
     public static void crearMovimiento(int[][] mat) {
     }
@@ -286,8 +285,10 @@ public class Tablero {
         this.solucion = solucion;
     }
 
+
+    
     public boolean delMismoColor() {
-        boolean ret = false;
+        boolean ret = true;
         String[] rojo = {this.getRojoB(), this.getRojoCB(), this.getRojoG(), this.getRojoL()};
         String[] azul = {this.getAzulB(), this.getAzulCB(), this.getAzulG(), this.getAzulL()};
 
@@ -307,21 +308,21 @@ public class Tablero {
         }
         //Corroboro que toda la matriz sea del mismo color
         
-        for (int i = 0; i < this.matrizActual.length && !this.delMismoColor; i++) {
-            for (int j = 0; j < this.matrizActual[0].length && !this.delMismoColor; j++) {
+      
+        for (int i = 0; i < this.matrizActual.length && ret; i++) {
+            for (int j = 0; j < this.matrizActual[0].length && ret; j++) {
                 boolean esta = false;
                 for (int k = 0; k < array.length; k++) {
                     if (this.matrizActual[i][j].equals(array[k])) {
                         esta = true;
                     }
-
                 }
                 if (!esta) {
                     ret = false;
                 }
             }
         }
-        this.delMismoColor = ret;
+      
         return ret;
     }
 
