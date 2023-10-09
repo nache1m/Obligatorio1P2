@@ -2,7 +2,7 @@
 package Dominio;
 
 public class Jugada {
-    private int indice = 1;
+    private int indice = 0;
     private String [][] tablero;
     
     //Gets y Sets
@@ -25,11 +25,14 @@ public class Jugada {
         this.tablero = tablero;
     }
     
-    public Jugada (String [] [] tablero) {
-    this.tablero = tablero;
-    indice++;
+    public Jugada (String [][] tablero) {
+        this.tablero = tablero;
+        this.indice++;
     }
-    
+    @Override
+    public String toString(){
+        return this.indice+"";
+    }
     public void ejectuarMovimiento(String[][] mat, String Movimiento) {
         boolean stop = false;
         String[] posiciones = Movimiento.split(",");

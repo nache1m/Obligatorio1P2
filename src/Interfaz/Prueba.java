@@ -12,9 +12,10 @@ public class Prueba {
     public static void realizarMovimiento(Tablero tablero, Sistema sistema){
         int cont = 0;
         int nivel = tablero.getNivel();
+        boolean salir = false;
         imprimirTablero(tablero.getMatrizActual());
         System.out.println("Ingrese fila (ENTER) y luego la columna (ENTER):");
-        while (cont < nivel) {
+        while (!tablero.delMismoColor() && !salir) {
             Scanner lector = new Scanner(System.in);
             String fila = lector.nextLine();
             switch (fila){
@@ -22,10 +23,11 @@ public class Prueba {
                     // Mostrar historial.
                     break;
                 case "S":
-                    // Mostrar solucion.
+                    sistema.soluciónTablero();
+                    System.out.println("Ingrese fila (ENTER) y luego la columna (ENTER):");
                     break;
                 case "X":
-                    cont = 100;
+                    salir = true;
                     System.out.println("¡Gracias por jugar!");
                     break;
                 default:
@@ -38,10 +40,18 @@ public class Prueba {
                     mostrarMovimientoRealizado(mat, tablero.getMatrizActual());
                     j.setTablero(mat);
                     cont++;
-                    System.out.println("Ingrese fila (ENTER) y luego la columna (ENTER):");
+                    System.out.println(sistema.getJugadas());
+                    if (tablero.delMismoColor()){
+                        System.out.println("¡Felicitaciones, has ganado!");
+                        Menu.imprimirTablero(mat);
+                    } else {
+                        System.out.println("Ingrese fila (ENTER) y luego la columna (ENTER):");
+                    }
                     break;
             }
         }
-        imprimirTablero(tablero.getMatrizActual());
+        if (salir || tablero.delMismoColor()){
+            Menu.imprimirMenu();
+        }
     }
 }

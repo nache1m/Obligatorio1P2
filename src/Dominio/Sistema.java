@@ -9,11 +9,10 @@ public class Sistema {
     private Tablero tablero;
     private ArrayList<Jugada> listaJugadas;
     private LocalDateTime horaInicio = LocalDateTime.now();
-    private String [] listaMovimientos= new String [100];
+    private ArrayList<String> listaMovimientos;
     private int nroMovimiento;
     private String [] posibleSolucion;
     private boolean sigueJugando;
-    
     public static void crearTablero() {};
     public static void crearTablero(int col, int fil) {};
     public static void crearTablero(String file) {}; //método que construyetablero con un archivo 
@@ -27,7 +26,6 @@ public class Sistema {
     }
     public void ejecutarJugada(String movimiento) {
         this.tablero.ejectuarMovimiento(this.tablero.getMatrizActual(), movimiento);
-        this.setListaMovimientos(movimiento);
     };
     public Tablero getTablero() {
         return tablero;
@@ -54,18 +52,6 @@ public class Sistema {
         this.horaInicio = horaInicio;
     }
 
-    
-    public String[] getListaMovimientos() {
-        return listaMovimientos;
-    }
-
-    
-    public void setListaMovimientos(String movimientos) {
-        this.listaMovimientos[this.nroMovimiento] = movimientos;
-        this.nroMovimiento++;
-    }
-
-   
     public String[] getPosibleSolucion() {
         return posibleSolucion;
     }

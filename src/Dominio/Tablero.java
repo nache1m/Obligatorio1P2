@@ -171,6 +171,8 @@ public class Tablero {
             {rojoCB, rojoG, rojoL, rojoCB, azulL, rojoL},
             {rojoCB, rojoB, rojoB, azulL, azulB, azulCB}
         };
+        String sol [] = {"4,4", "5,6", "5,4"};
+        this.solucion = sol;
     }
 
     ;

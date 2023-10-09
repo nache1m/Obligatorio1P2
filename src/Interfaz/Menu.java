@@ -23,10 +23,8 @@ public class Menu {
                 System.out.println("3. Usar tablero al azar.");
                 System.out.println("4. Salir del menú.");
             try {
- 
                 System.out.println("Escribe una de las opciones");
                 opcion = lector.nextInt();
- 
                 switch (opcion) {
                     case 1:
                         // Llamada del metodo.
@@ -38,6 +36,7 @@ public class Menu {
                         tablero.setNivel(3);
                         System.out.println("¡Que empiece el juego!");
                         Prueba.realizarMovimiento(tablero, sistema);
+                        salir = true;
                         break;
                     case 3:
                         // Llamada del metodo.
@@ -49,7 +48,7 @@ public class Menu {
                         System.out.println("Debe ingresar un número entre 1 y 4.");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Debes insertar un número");
+                System.out.println("Debes insertar un número.");
                 lector.next();
                 }
             }
