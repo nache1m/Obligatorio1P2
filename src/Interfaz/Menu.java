@@ -1,6 +1,4 @@
-
 package Interfaz;
-
 import Dominio.Sistema;
 import Dominio.Tablero;
 import java.util.*;

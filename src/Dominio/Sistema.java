@@ -80,30 +80,40 @@ public class Sistema {
         
         //Creo el indice que me indica la cantidad de pasos acertados que debo volver;
         for (int i =0; i<solucionTablero.length && !noSigue; i++){
-          if (movimientosTablero[i].equals(solucionTablero[i])) {
+            if(movimientosTablero[i] == null) {
+                noSigue=true;
+            }
+            else if (movimientosTablero[i].equals(solucionTablero[i])) {
               pasosCorrectos++;
-          } else {
-              noSigue=true;
-          }
-        }
+                    } else {
+                        noSigue=true;
+                        }
+            }
         
         //Corroboro si tengo que volver algún paso o no
         
-        if (pasosCorrectos == movimientosTablero.length) {
-            System.out.println("Solo resta ingresar los pasos: ");
+        if (pasosCorrectos == this.nroMovimiento) {
+            System.out.println("Para solucion este nivel solo resta ingresar los pasos: ");
             for (int i = pasosCorrectos; i<solucionTablero.length; i++) {
                 System.out.print(solucionTablero[i]+" ");
             }
           }   
         else{
-             System.out.println("Debes volver sobre tus pasos con: ");      
-             for (int i = movimientosTablero.length - 1; i >= pasosCorrectos - 1; i--) {
-                 System.out.print(movimientosTablero[i]);
+            System.out.println("");
+             System.out.println("Para solucionar este nivel debes volver sobre tus pasos con: ");      
+             for (int i = movimientosTablero.length - 1; i >= pasosCorrectos; i--) {
+                 if(movimientosTablero[i] != null) {
+               System.out.print(movimientosTablero[i]+ " ");
+            }
+                 
              }
-              System.out.print(".");
+             
+              System.out.println("");
              System.out.println("Luego ingresar los pasos: ");
               for (int i = pasosCorrectos; i<solucionTablero.length; i++) {
-                System.out.print(solucionTablero[i]+" ");
+                     
+               System.out.print(solucionTablero[i]+" ");
+                
             }
                     }
     }
