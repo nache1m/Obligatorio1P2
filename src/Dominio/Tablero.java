@@ -23,13 +23,6 @@ public class Tablero {
     private String azulCB = "\u001B[34m\\\u001B[0m";
     private String rojoL = "\u001B[31m|\u001B[0m";
     private String azulL = "\u001B[34m|\u001B[0m";
-
-
-    public static void crearMovimiento(int[][] mat) {
-    }
-
-    ;
-    
     
     
     //Getters y Setters

@@ -9,8 +9,9 @@ public class Sistema {
     private Tablero tablero;
     private ArrayList<Jugada> listaJugadas;
     private LocalDateTime horaInicio = LocalDateTime.now();
-    private ArrayList<String> listaMovimientos;
-    private int nroMovimiento;
+    private String [] listaMovimientos = new String [1000];
+    private int nroJugada = 0;
+    private int nroMovimiento = 0;
     private String [] posibleSolucion;
     private boolean sigueJugando;
     public static void crearTablero() {};
@@ -72,11 +73,47 @@ public class Sistema {
     }
     
     public void soluciónTablero() {
-        String [] array = tablero.getSolucion();
-        System.out.print("La solución es los movimientos: ");
-        for (int i = 0; i<array.length; i++) {
-        System.out.print(array[i] + " ");
+        String [] solucionTablero = this.tablero.getSolucion();
+        String [] movimientosTablero = this.listaMovimientos;
+        int pasosCorrectos = 0;
+        boolean noSigue = false;
+        
+        //Creo el indice que me indica la cantidad de pasos acertados que debo volver;
+        for (int i =0; i<solucionTablero.length && !noSigue; i++){
+          if (movimientosTablero[i].equals(solucionTablero[i])) {
+              pasosCorrectos++;
+          } else {
+              noSigue=true;
+          }
         }
-        System.out.println("");
+        
+        //Corroboro si tengo que volver algún paso o no
+        
+        if (pasosCorrectos == movimientosTablero.length) {
+            System.out.println("Solo resta ingresar los pasos: ");
+            for (int i = pasosCorrectos; i<solucionTablero.length; i++) {
+                System.out.print(solucionTablero[i]+" ");
+            }
+          }   
+        else{
+             System.out.println("Debes volver sobre tus pasos con: ");      
+             for (int i = movimientosTablero.length - 1; i >= pasosCorrectos - 1; i--) {
+                 System.out.print(movimientosTablero[i]);
+             }
+              System.out.print(".");
+             System.out.println("Luego ingresar los pasos: ");
+              for (int i = pasosCorrectos; i<solucionTablero.length; i++) {
+                System.out.print(solucionTablero[i]+" ");
+            }
+                    }
     }
+    
+      public void agregarMovimiento(String move) {
+          listaMovimientos[nroMovimiento] = move;
+          this.nroMovimiento++;
+          
+    }
+
+    ;
+    
 }
