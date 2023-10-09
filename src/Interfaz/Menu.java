@@ -11,6 +11,11 @@ public class Menu {
         Scanner lector = new Scanner(System.in);
         boolean salir = true;
         int opcion;
+        String titulo = "¡Bienvenido a Soliflips!";
+        int longitud = titulo.length();
+        System.out.println("+" + "-".repeat(longitud + 2) + "+");
+        System.out.println("| " + centrarTexto(titulo, longitud) + " |");
+        System.out.println("+" + "-".repeat(longitud + 2) + "+");
         System.out.println("¿Se desea comenzar una nueva partida? (S/N)");
         String deseaJugar = lector.nextLine();
         if (deseaJugar.equalsIgnoreCase("N")){
@@ -23,14 +28,14 @@ public class Menu {
                 System.out.println("3. Usar tablero al azar.");
                 System.out.println("4. Salir del menú.");
             try {
-                System.out.println("Escribe una de las opciones");
+                System.out.println("Escribe una de las opciones:");
                 opcion = lector.nextInt();
+                Sistema sistema = new Sistema();
                 switch (opcion) {
                     case 1:
                         // Llamada del metodo.
                         break;
                     case 2:
-                        Sistema sistema = new Sistema();
                         Tablero tablero = new Tablero();
                         sistema.setTablero(tablero);
                         tablero.setNivel(3);
@@ -39,7 +44,17 @@ public class Menu {
                         salir = true;
                         break;
                     case 3:
-                        // Llamada del metodo.
+                        System.out.println("Ingrese tamaño de fila:");
+                        String fila = lector.nextLine();
+                        System.out.println("Ingrese tamaño de columna:");
+                        String col = lector.nextLine();
+                        System.out.println("Ingrese nivel");
+                        int nivel = lector.nextInt();
+                        String filCol = fila+","+col;
+                        Tablero tableroAzar = new Tablero(filCol,nivel);
+                        System.out.println("¡Que empiece el juego!");
+                        Prueba.realizarMovimiento(tableroAzar, sistema);
+                        salir = true;
                         break;
                     case 4:
                         salir = true;
@@ -133,5 +148,14 @@ public class Menu {
             clonada[i] = mat[i].clone();
         }
         return clonada;
+    }
+    public static String centrarTexto(String texto, int longitud) {
+        int espacios = (longitud - texto.length()) / 2;
+        return " ".repeat(espacios) + texto + " ".repeat(espacios + (longitud - texto.length()) % 2);
+    }
+    public static void limpiarConsola(){
+        for (int i=0; i<10;i++) {
+            System.out.println("");
+        }
     }
 }
