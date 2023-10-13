@@ -43,13 +43,13 @@ public class Menu {
                         break;
                     case 3:
                         System.out.println("Ingrese tamaño de fila:");
-                        String fila = lector.nextLine();
+                        int fila = lector.nextInt();
                         System.out.println("Ingrese tamaño de columna:");
-                        String col = lector.nextLine();
+                        int col = lector.nextInt();
                         System.out.println("Ingrese nivel");
                         int nivel = lector.nextInt();
                         String filCol = fila+","+col;
-                        Tablero tableroAzar = new Tablero(filCol,nivel);
+                        Tablero tableroAzar = new Tablero (filCol,nivel);
                         System.out.println("¡Que empiece el juego!");
                         Prueba.realizarMovimiento(tableroAzar, sistema);
                         salir = true;
