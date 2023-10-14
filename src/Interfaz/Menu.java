@@ -35,7 +35,7 @@ public class Menu {
                         case 1:
                             Menu.limpiarConsola();
                             System.out.println("¡Que empiece el juego!");
-                            Prueba.realizarMovimiento(Prueba.leerArchivo(),sistema);
+                            Prueba.realizarMovimiento(Prueba.leerArchivo(sistema),sistema);
                             salir = true;
                             break;
                         case 2:
@@ -52,7 +52,7 @@ public class Menu {
                             int fila = lector.nextInt();
                             System.out.println("Ingrese tamaño de columna:");
                             int col = lector.nextInt();
-                            System.out.println("Ingrese nivel");
+                            System.out.println("Ingrese nivel:");
                             int nivel = lector.nextInt();
                             String filCol = fila + "," + col;
                             Tablero tableroAzar = new Tablero(filCol, nivel);

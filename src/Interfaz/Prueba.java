@@ -78,19 +78,22 @@ public class Prueba {
         }
     }
     
-    public static Tablero leerArchivo() throws FileNotFoundException{
-        Scanner input = new Scanner(new File(".\\test\\datos.txt"));
-        Tablero tablero = new Tablero();
-        while (input.hasNext()){
-            int fil = input.nextInt();
-            int col = input.nextInt();
-            String mat[][] = new String[fil][col];
-            for (int i=0;i<fil;i++){
-                for (int j=0;j<col;j++){
-                    String aux = input.next();
+    public static Tablero leerArchivo(Sistema sistema) throws FileNotFoundException {
+    Scanner input = new Scanner(new File(".\\test\\datos.txt"));
+    Tablero tablero = new Tablero();
+    while (input.hasNext()) {
+        int fil = input.nextInt();
+        int col = input.nextInt();
+        String mat[][] = new String[fil][col];
+        input.nextLine();
+        for (int i = 0; i < fil; i++) {
+            String[] linea = input.nextLine().split(" ");
+            for (int j = 0; j < col; j++) {
+                if (linea.length > j) {
+                    String aux = linea[j];
                     char simb = aux.charAt(0);
                     char color = aux.charAt(1);
-                    if (color == 'R'){
+                    if (color == 'R') {
                         String def = "\u001B[31m"+simb+"\u001B[0m";
                         mat[i][j] = def;
                     } else {
@@ -99,15 +102,20 @@ public class Prueba {
                     }
                 }
             }
-            //System.out.println(input.next());
-            //int nivel = input.nextInt();
-            //String sol[] = new String[nivel];
-            //for (int k=0;k<nivel;k++){
-            //    sol[k] = input.nextLine();
-           // }
-           // tablero.setSolucion(sol);
-            tablero.setMatrizActual(mat);
         }
-        return tablero;
+        String nivel = input.nextLine().trim();
+        int nivelInt = Integer.parseInt(nivel);
+        String sol[] = new String[nivelInt];
+        for (int k = 0; k < nivelInt; k++) {
+            String aux = input.nextLine().replace(" ", ",");
+            sol[k] = aux;
+        }
+        tablero.setSolucion(sol);
+        tablero.setMatrizActual(mat);
+        sistema.setTablero(tablero);
     }
+    input.close();
+    return tablero;
+}
+
 }
