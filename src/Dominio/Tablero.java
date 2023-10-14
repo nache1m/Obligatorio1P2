@@ -129,17 +129,17 @@ public class Tablero {
 
         //Modifico matriz tantas veces cómo diga el nivel y la seteo a mi atributo. 
         //Crea array con las soluciones para el ejercicio.
-        solucion = new String[nivel];
-        for (int i = 0; i < nivel; i++) {
-            String movimiento = "";
-            Random random = new Random();
-            int j = random.nextInt(mat.length);
-            movimiento += j + ",";
-            int k = random.nextInt(mat[0].length);
-            movimiento += k;
-            solucion[i] = movimiento;
-            this.ejectuarMovimiento(mat, movimiento);
-        }
+        //solucion = new String[nivel];
+        //for (int i = 0; i < nivel; i++) {
+            //String movimiento = "";
+            //Random random = new Random();
+           // int j = random.nextInt(mat.length);
+            //movimiento += j + ",";
+            //int k = random.nextInt(mat[0].length);
+           // movimiento += k;
+           // solucion[i] = movimiento;
+          //  this.ejectuarMovimiento(mat, movimiento);
+       // }
 
         this.setMatrizActual(mat);
 

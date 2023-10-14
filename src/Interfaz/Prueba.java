@@ -2,15 +2,17 @@ package Interfaz;
 
 import Dominio.*;
 import static Interfaz.Menu.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Prueba {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         Menu.imprimirMenu();
     }
 
-    public static void realizarMovimiento(Tablero tablero, Sistema sistema) {
+    public static void realizarMovimiento(Tablero tablero, Sistema sistema) throws FileNotFoundException {
         int cont = 0;
         int nivel = tablero.getNivel();
         boolean salir = false;
@@ -74,5 +76,38 @@ public class Prueba {
             Menu.limpiarConsola();
             Menu.imprimirMenu();
         }
+    }
+    
+    public static Tablero leerArchivo() throws FileNotFoundException{
+        Scanner input = new Scanner(new File(".\\test\\datos.txt"));
+        Tablero tablero = new Tablero();
+        while (input.hasNext()){
+            int fil = input.nextInt();
+            int col = input.nextInt();
+            String mat[][] = new String[fil][col];
+            for (int i=0;i<fil;i++){
+                for (int j=0;j<col;j++){
+                    String aux = input.next();
+                    char simb = aux.charAt(0);
+                    char color = aux.charAt(1);
+                    if (color == 'R'){
+                        String def = "\u001B[31m"+simb+"\u001B[0m";
+                        mat[i][j] = def;
+                    } else {
+                        String def = "\u001B[34m"+simb+"\u001B[0m";
+                        mat[i][j] = def;
+                    }
+                }
+            }
+            //System.out.println(input.next());
+            //int nivel = input.nextInt();
+            //String sol[] = new String[nivel];
+            //for (int k=0;k<nivel;k++){
+            //    sol[k] = input.nextLine();
+           // }
+           // tablero.setSolucion(sol);
+            tablero.setMatrizActual(mat);
+        }
+        return tablero;
     }
 }
