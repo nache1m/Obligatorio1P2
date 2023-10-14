@@ -8,20 +8,12 @@ public class Sistema {
     
     private Tablero tablero;
     private ArrayList<Jugada> listaJugadas;
-    private LocalDateTime horaInicio = LocalDateTime.now();
+    private long horaInicio;
+    private long horaFinal;
     private String [] listaMovimientos = new String [1000];
     private int nroJugada = 0;
     private int nroMovimiento = 0;
     private String [] posibleSolucion;
-    private boolean sigueJugando;
-    public static void crearTablero() {};
-    public static void crearTablero(int col, int fil) {};
-    public static void crearTablero(String file) {}; //método que construyetablero con un archivo 
-    public static void mensajeFinal() {};
-    public static void sigueJugando() {};
-    public static void retroceder() {};
-    public static void terminaJuego() {};
-    
     public Sistema(){
         listaJugadas = new ArrayList();
     }
@@ -44,14 +36,6 @@ public class Sistema {
     public void agregarJugada(Jugada j){
         listaJugadas.add(j);
     }
-    public LocalDateTime getHoraInicio() {
-        return horaInicio;
-    }
-
-    
-    public void setHoraInicio(LocalDateTime horaInicio) {
-        this.horaInicio = horaInicio;
-    }
 
     public String[] getPosibleSolucion() {
         return posibleSolucion;
@@ -60,16 +44,6 @@ public class Sistema {
     
     public void setPosibleSolucion(String[] posibleSolucion) {
         this.posibleSolucion = posibleSolucion;
-    }
-
-    
-    public boolean isSigueJugando() {
-        return sigueJugando;
-    }
-
-    
-    public void setSigueJugando(boolean sigueJugando) {
-        this.sigueJugando = sigueJugando;
     }
     
     public void soluciónTablero() {
@@ -123,7 +97,13 @@ public class Sistema {
           this.nroMovimiento++;
           
     }
-
-    ;
-    
+    public void iniciarTiempo(){
+        this.horaInicio = System.currentTimeMillis();
+    }
+    public void pararTiempo(){
+        this.horaFinal = System.currentTimeMillis();
+    }
+    public void tiempoFinal(){
+       String tiempo = String.valueOf(this.horaFinal - this.horaInicio/1000);
+    }
 }

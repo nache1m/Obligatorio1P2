@@ -39,6 +39,7 @@ public class Menu {
                             salir = true;
                             break;
                         case 2:
+                            sistema.iniciarTiempo();
                             Tablero tablero = new Tablero();
                             sistema.setTablero(tablero);
                             tablero.setNivel(3);
@@ -56,6 +57,7 @@ public class Menu {
                             int nivel = lector.nextInt();
                             String filCol = fila + "," + col;
                             Tablero tableroAzar = new Tablero(filCol, nivel);
+                            sistema.setTablero(tableroAzar);
                             Menu.limpiarConsola();
                             System.out.println("¡Que empiece el juego!");
                             Prueba.realizarMovimiento(tableroAzar, sistema);

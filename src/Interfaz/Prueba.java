@@ -62,10 +62,11 @@ public class Prueba {
                     j.setTablero(mat);
                     cont++;
                     if (tablero.delMismoColor()) {
+                        sistema.pararTiempo();
                         System.out.println("");
                         Menu.imprimirTablero(tablero.getMatrizActual());
                         System.out.println("\n¡Felicitaciones, has ganado!");
-                        // Agregar metodo de imprimir tiempo.
+                        //System.out.println("Su tiempo fue de: "+sistema.tiempoFinal());
                     } else {
                         System.out.println("\nIngrese fila (ENTER) y luego la columna (ENTER):");
                     }

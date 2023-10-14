@@ -23,11 +23,8 @@ public class Tablero {
     private String azulCB = "\u001B[34m\\\u001B[0m";
     private String rojoL = "\u001B[31m|\u001B[0m";
     private String azulL = "\u001B[34m|\u001B[0m";
-    
-    
+
     //Getters y Setters
-    
-    
     public String getRojoG() {
         return this.rojoG;
     }
@@ -120,8 +117,8 @@ public class Tablero {
         String[][] mat = new String[fil][col];
 
         for (int i = 0; i < mat.length; i++) {
-           
-            for (int j = 0; j < mat[i].length; j++) { 
+
+            for (int j = 0; j < mat[i].length; j++) {
                 int randomNumber = random.nextInt(4);
                 mat[i][j] = array[randomNumber];
             }
@@ -129,27 +126,26 @@ public class Tablero {
 
         //Modifico matriz tantas veces cómo diga el nivel y la seteo a mi atributo. 
         //Crea array con las soluciones para el ejercicio.
-        String [] solucion = new String[nivel];
+        String[] solucion = new String[nivel];
         for (int i = 0; i < nivel; i++) {
-            System.out.println("vuelta");
-           String movimiento = "";
-           int j = random.nextInt(fil);
-           if (j == 0) {
-            j++;
-             } 
+            String movimiento = "";
+            int j = random.nextInt(fil);
+            if (j == 0) {
+                j++;
+            }
             movimiento = j + ",";
             int k = random.nextInt(col);
-              if (k == 0) {
-            k++;
-             }
-              
-           movimiento += k;
+            if (k == 0) {
+                k++;
+            }
+
+            movimiento += k;
             solucion[i] = movimiento;
             System.out.println(movimiento);
-          this.ejectuarMovimiento(mat, movimiento);
-       
-        }
+            this.ejectuarMovimiento(mat, movimiento);
 
+        }
+        this.solucion = solucion;
         this.setMatrizActual(mat);
 
     }
@@ -173,7 +169,7 @@ public class Tablero {
             {rojoCB, rojoG, rojoL, rojoCB, azulL, rojoL},
             {rojoCB, rojoB, rojoB, azulL, azulB, azulCB}
         };
-        String sol [] = {"4,4", "5,6", "5,4"};
+        String sol[] = {"4,4", "5,6", "5,4"};
         this.solucion = sol;
     }
 
@@ -211,8 +207,7 @@ public class Tablero {
         String[] posiciones = Movimiento.split(",");
         int i = Integer.valueOf(posiciones[0]) - 1;
         int j = Integer.valueOf(posiciones[1]) - 1;
-         
-        
+
         String objeto = mat[i][j];
         if (i > -2 && j > -2) {
             //Guion
@@ -291,8 +286,6 @@ public class Tablero {
         this.solucion = solucion;
     }
 
-
-    
     public boolean delMismoColor() {
         boolean ret = true;
         String[] rojo = {this.getRojoB(), this.getRojoCB(), this.getRojoG(), this.getRojoL()};
@@ -313,8 +306,7 @@ public class Tablero {
             }
         }
         //Corroboro que toda la matriz sea del mismo color
-        
-      
+
         for (int i = 0; i < this.matrizActual.length && ret; i++) {
             for (int j = 0; j < this.matrizActual[0].length && ret; j++) {
                 boolean esta = false;
@@ -328,7 +320,7 @@ public class Tablero {
                 }
             }
         }
-      
+
         return ret;
     }
 
