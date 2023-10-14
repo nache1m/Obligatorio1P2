@@ -115,13 +115,13 @@ public class Tablero {
         } else {
             array = azul;
         }
-
+        Random random = new Random();
         //Creo matriz al azar
         String[][] mat = new String[fil][col];
 
         for (int i = 0; i < mat.length; i++) {
-            for (int j = 0; j < mat[i].length; j++) {
-                Random random = new Random();
+           
+            for (int j = 0; j < mat[i].length; j++) { 
                 int randomNumber = random.nextInt(4);
                 mat[i][j] = array[randomNumber];
             }
@@ -129,17 +129,26 @@ public class Tablero {
 
         //Modifico matriz tantas veces cómo diga el nivel y la seteo a mi atributo. 
         //Crea array con las soluciones para el ejercicio.
-        //solucion = new String[nivel];
-        //for (int i = 0; i < nivel; i++) {
-            //String movimiento = "";
-            //Random random = new Random();
-           // int j = random.nextInt(mat.length);
-            //movimiento += j + ",";
-            //int k = random.nextInt(mat[0].length);
-           // movimiento += k;
-           // solucion[i] = movimiento;
-          //  this.ejectuarMovimiento(mat, movimiento);
-       // }
+        String [] solucion = new String[nivel];
+        for (int i = 0; i < nivel; i++) {
+            System.out.println("vuelta");
+           String movimiento = "";
+           int j = random.nextInt(fil);
+           if (j == 0) {
+            j++;
+             } 
+            movimiento = j + ",";
+            int k = random.nextInt(col);
+              if (k == 0) {
+            k++;
+             }
+              
+           movimiento += k;
+            solucion[i] = movimiento;
+            System.out.println(movimiento);
+          this.ejectuarMovimiento(mat, movimiento);
+       
+        }
 
         this.setMatrizActual(mat);
 
@@ -202,6 +211,8 @@ public class Tablero {
         String[] posiciones = Movimiento.split(",");
         int i = Integer.valueOf(posiciones[0]) - 1;
         int j = Integer.valueOf(posiciones[1]) - 1;
+         
+        
         String objeto = mat[i][j];
         if (i > -2 && j > -2) {
             //Guion
