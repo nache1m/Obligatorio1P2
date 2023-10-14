@@ -66,7 +66,7 @@ public class Prueba {
                         System.out.println("");
                         Menu.imprimirTablero(tablero.getMatrizActual());
                         System.out.println("\n¡Felicitaciones, has ganado!");
-                        //System.out.println("Su tiempo fue de: "+sistema.tiempoFinal());
+                        sistema.tiempoFinal();
                     } else {
                         System.out.println("\nIngrese fila (ENTER) y luego la columna (ENTER):");
                     }

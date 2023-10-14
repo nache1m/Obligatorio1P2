@@ -103,7 +103,10 @@ public class Sistema {
     public void pararTiempo(){
         this.horaFinal = System.currentTimeMillis();
     }
-    public void tiempoFinal(){
-       String tiempo = String.valueOf(this.horaFinal - this.horaInicio/1000);
+    public void tiempoFinal(){ 
+       int segundos = (int)(this.horaFinal - this.horaInicio) / 1000;
+       int milisegundos = (int) (this.horaFinal - this.horaInicio) % 1000;
+       
+       System.out.println("Su tiempo fue de " + segundos + " segundos " + milisegundos + " milisegundos ");
     }
 }
