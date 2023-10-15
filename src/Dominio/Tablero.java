@@ -141,7 +141,6 @@ public class Tablero {
 
             movimiento += k;
             solucion[i] = movimiento;
-            System.out.println(movimiento);
             this.ejectuarMovimiento(mat, movimiento);
 
         }

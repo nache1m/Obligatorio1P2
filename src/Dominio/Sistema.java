@@ -74,14 +74,13 @@ public class Sistema {
           }   
         else{
             System.out.println("");
-             System.out.println("Para solucionar este nivel debes volver sobre tus pasos con: ");      
+             int contador = 0;      
              for (int i = movimientosTablero.length - 1; i >= pasosCorrectos; i--) {
                  if(movimientosTablero[i] != null) {
-               System.out.print(movimientosTablero[i]+ " ");
-            }
-                 
+               contador++;
+            }  
              }
-             
+            System.out.println("Para solucionar este nivel debes volver sobre tus pasos (-1 -1) " + contador + " veces.");  
               System.out.println("");
              System.out.println("Luego ingresar los pasos: ");
               for (int i = pasosCorrectos; i<solucionTablero.length; i++) {

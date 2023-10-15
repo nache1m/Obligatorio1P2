@@ -33,30 +33,42 @@ public class Menu {
                     Sistema sistema = new Sistema();
                     switch (opcion) {
                         case 1:
+                            sistema.iniciarTiempo();
                             Menu.limpiarConsola();
                             System.out.println("¡Que empiece el juego!");
                             Prueba.realizarMovimiento(Prueba.leerArchivo(sistema),sistema);
                             salir = true;
                             break;
                         case 2:
-                            sistema.iniciarTiempo();
                             Tablero tablero = new Tablero();
                             sistema.setTablero(tablero);
                             tablero.setNivel(3);
                             Menu.limpiarConsola();
                             System.out.println("¡Que empiece el juego!");
+                            sistema.iniciarTiempo();
                             Prueba.realizarMovimiento(tablero, sistema);
                             salir = true;
                             break;
                         case 3:
                             System.out.println("Ingrese tamaño de fila:");
                             int fila = lector.nextInt();
+                            
+                            while(!Prueba.verificarNumeroInt(9,3,fila)) {
+                             fila = Prueba.pedirNumeroQueCumplaInt(9,3);
+                            }   
                             System.out.println("Ingrese tamaño de columna:");
                             int col = lector.nextInt();
+                            while(!Prueba.verificarNumeroInt(9,3,col)) {
+                             col = Prueba.pedirNumeroQueCumplaInt(9,3);
+                            }  
                             System.out.println("Ingrese nivel:");
                             int nivel = lector.nextInt();
+                             while(!Prueba.verificarNumeroInt(8,1,nivel)) {
+                             nivel = Prueba.pedirNumeroQueCumplaInt(8,1);
+                            }  
                             String filCol = fila + "," + col;
                             Tablero tableroAzar = new Tablero(filCol, nivel);
+                            sistema.iniciarTiempo();
                             sistema.setTablero(tableroAzar);
                             Menu.limpiarConsola();
                             System.out.println("¡Que empiece el juego!");
