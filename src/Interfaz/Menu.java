@@ -51,21 +51,13 @@ public class Menu {
                             break;
                         case 3:
                             System.out.println("Ingrese tamaño de fila:");
-                            int fila = lector.nextInt();
+                            int fila = Prueba.verificoQueSirva(9,3);
                             
-                            while(!Prueba.verificarNumeroInt(9,3,fila)) {
-                             fila = Prueba.pedirNumeroQueCumplaInt(9,3);
-                            }   
                             System.out.println("Ingrese tamaño de columna:");
-                            int col = lector.nextInt();
-                            while(!Prueba.verificarNumeroInt(9,3,col)) {
-                             col = Prueba.pedirNumeroQueCumplaInt(9,3);
-                            }  
+                            int col = Prueba.verificoQueSirva(9,3);
+                         
                             System.out.println("Ingrese nivel:");
-                            int nivel = lector.nextInt();
-                             while(!Prueba.verificarNumeroInt(8,1,nivel)) {
-                             nivel = Prueba.pedirNumeroQueCumplaInt(8,1);
-                            }  
+                            int nivel = Prueba.verificoQueSirva(8,1);
                             String filCol = fila + "," + col;
                             Tablero tableroAzar = new Tablero(filCol, nivel);
                             sistema.iniciarTiempo();

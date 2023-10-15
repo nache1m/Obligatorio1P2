@@ -4,6 +4,7 @@ import Dominio.*;
 import static Interfaz.Menu.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Prueba {
@@ -24,7 +25,7 @@ public class Prueba {
             int ancho = tablero.getMatrizActual()[0].length;
             if (!(fila.equalsIgnoreCase("H") || fila.equalsIgnoreCase("S") || fila.equalsIgnoreCase("X"))) 
                 {
-                if (Integer.valueOf(fila) == -1) {
+                if (!(Integer.valueOf(fila) == -1)) {
                      while(!verificarNumero(largo,1,fila)) {
                           fila = pedirNumeroQueCumplaString(largo,1);
                      }
@@ -60,12 +61,7 @@ public class Prueba {
                     System.out.println("\nIngrese fila (ENTER) y luego la columna (ENTER):");
                     break;
                 default:
-                    int col = lector.nextInt();
-                     if (!(col == -1 || fila.equalsIgnoreCase("H") || fila.equalsIgnoreCase("S") || fila.equalsIgnoreCase("X"))) 
-                     {
-                        while(!verificarNumero(ancho,1,String.valueOf(col))) {
-                        col = pedirNumeroQueCumplaInt(ancho,1);
-                        }}
+                    int col = verificoQueSirva(ancho, 1);
                     String mov = fila + "," + col;
                     String mat[][] = clonarMatriz(tablero.getMatrizActual());
                     Jugada j = new Jugada(mat);
@@ -168,5 +164,27 @@ public class Prueba {
         return res;
     }
 
-
+    public static int verificoQueSirva(int mayor, int menor) {
+        Scanner in = new Scanner (System.in);
+        boolean ret = false;
+        int number = 0;
+        while (!ret) {
+            try {
+                System.out.println("Número comprendido entre " + menor + " y mayor " + mayor);
+                System.out.print(">");
+                number = in.nextInt();
+                while (!(number <= mayor && number >= menor)) {
+                  System.out.println("Por favor ingrese un número comprendido entre " + menor + " y mayor " + mayor);
+                  number = in.nextInt();
+                }
+                ret = true;
+            }
+            catch(InputMismatchException e) {
+                in.next();
+                System.out.println("Error. Usted ingresó un string. ");
+                System.out.println("");
+        }   
+    }
+    return number;
+}
 }
