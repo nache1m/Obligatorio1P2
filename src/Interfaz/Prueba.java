@@ -19,22 +19,14 @@ public class Prueba {
         imprimirTablero(tablero.getMatrizActual());
         System.out.println("\nIngrese fila (ENTER) y luego la columna (ENTER):");
         while (!tablero.delMismoColor() && !salir) {
-            Scanner lector = new Scanner(System.in);
-            String fila = lector.nextLine();
             int largo = tablero.getMatrizActual().length;
             int ancho = tablero.getMatrizActual()[0].length;
-            if (!(fila.equalsIgnoreCase("H") || fila.equalsIgnoreCase("S") || fila.equalsIgnoreCase("X"))) 
-                {
-                if (!(Integer.valueOf(fila) == -1)) {
-                     while(!verificarNumero(largo,1,fila)) {
-                          fila = pedirNumeroQueCumplaString(largo,1);
-                     }
-                }
-               }
-                switch (fila) {
+            Scanner lector = new Scanner(System.in);
+            String fila = ingresarFilaValida(largo);
+            switch (fila) {
                 case "H":
                     System.out.print("Historial de movimientos:");
-                    sistema.soluciónTablero();
+                    sistema.mostrarHistorial();
                     System.out.println("\nIngrese fila (ENTER) y luego la columna (ENTER):");
                     break;
                 case "S":
@@ -54,10 +46,23 @@ public class Prueba {
                         break;
                     }
                 case "-1":
+                    
                     String ret = lector.nextLine();
-                    tablero.setMatrizActual(sistema.getJugadas().get(sistema.getJugadas().size() - 1).getTablero());
-                    sistema.getJugadas().remove(sistema.getJugadas().size() - 1);
+                    try {
+                        tablero.setMatrizActual(sistema.getJugadas().get(sistema.getJugadas().size() - 1).getTablero()); 
+                         sistema.getJugadas().remove(sistema.getJugadas().size() - 1);
+                            }
+                    catch (IndexOutOfBoundsException e) {
+                            System.out.println("No puedes ir para atrás porque ya no hay más movimientos.");
+                            String fila1 = ingresarFilaValida(largo);
+                            String col1 = lector.nextLine();
+                            String mov1= fila1+ "," + col1;
+                            tablero.ejectuarMovimiento(tablero.getMatrizActual(), mov1);
+
+                    }
+                   
                     Menu.imprimirTablero(tablero.getMatrizActual());
+                    System.out.println("Linea 5");
                     System.out.println("\nIngrese fila (ENTER) y luego la columna (ENTER):");
                     break;
                 default:
@@ -141,15 +146,15 @@ public class Prueba {
 
     public static String pedirNumeroQueCumplaString(int mayor, int menor) {
         System.out.println("No es posible ingresar el número que ha elegido. Por favor ingrese un dígito menor o igual a " + menor + " y mayor o igual a " + mayor + ".");
-        Scanner lector = new Scanner (System.in);
+        Scanner lector = new Scanner(System.in);
         String res = lector.nextLine();
-        
+
         return res;
     }
 
     static boolean verificarNumeroInt(int mayor, int menor, int numero) {
-         Boolean res = false;
-         
+        Boolean res = false;
+
         if (numero <= mayor && numero >= menor) {
             res = true;
         }
@@ -157,34 +162,59 @@ public class Prueba {
     }
 
     static int pedirNumeroQueCumplaInt(int mayor, int menor) {
-       System.out.println("No es posible procesar su opción. Por favor ingrese un número menor o igual a " + menor + " y mayor o igual a " + mayor + ".");
-        Scanner lector = new Scanner (System.in);
+        System.out.println("No es posible procesar su opción. Por favor ingrese un número menor o igual a " + menor + " y mayor o igual a " + mayor + ".");
+        Scanner lector = new Scanner(System.in);
         int res = lector.nextInt();
-        
+
         return res;
     }
 
     public static int verificoQueSirva(int mayor, int menor) {
-        Scanner in = new Scanner (System.in);
+        Scanner in = new Scanner(System.in);
         boolean ret = false;
         int number = 0;
         while (!ret) {
             try {
-                System.out.println("Número comprendido entre " + menor + " y mayor " + mayor);
+                System.out.println("Ingrese número comprendido entre " + menor + " y " + mayor);
                 System.out.print(">");
                 number = in.nextInt();
                 while (!(number <= mayor && number >= menor)) {
-                  System.out.println("Por favor ingrese un número comprendido entre " + menor + " y mayor " + mayor);
-                  number = in.nextInt();
+                    System.out.println("Ingrese un número comprendido entre " + menor + " y " + mayor);
+                    number = in.nextInt();
                 }
                 ret = true;
-            }
-            catch(InputMismatchException e) {
+            } catch (InputMismatchException e) {
                 in.next();
                 System.out.println("Error. Usted ingresó un string. ");
                 System.out.println("");
-        }   
+            }
+        }
+        return number;
     }
-    return number;
-}
+
+    private static String ingresarFilaValida(int mayor) {
+        Scanner lector = new Scanner(System.in);
+        boolean ret = false;
+        String fila = "";
+        while (!ret) {
+            try {
+              System.out.println("Por favor ingrese un número comprendido entre 1 y " + mayor + ". De lo contrario ingrese X, S o H.");
+                fila = lector.nextLine();
+                int number = Integer.valueOf(fila);
+                while (!(number <= mayor && number >= 1) && !fila.equals("-1")) {
+                    System.out.println("Su número no está dentro del rango. Por favor ingrese un número entre 1 y " + mayor + ". De lo contrario ingrese X, S o H.");
+                    fila = lector.nextLine();
+                    number = Integer.valueOf(fila);
+                }
+                ret = true;
+            } catch (NumberFormatException e) {
+                if (fila.equalsIgnoreCase("H") || fila.equalsIgnoreCase("S") || fila.equalsIgnoreCase("X")) {
+                    ret = true;
+                } else {
+                    System.out.println("Carácter inválido.");
+                }
+            }
+        }
+        return fila;
+    }
 }

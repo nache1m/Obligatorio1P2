@@ -90,6 +90,15 @@ public class Sistema {
             }
                     }
     }
+    public void mostrarHistorial () {
+        System.out.println("Usted ha ingresado los movimientos: ");
+        String [] array = this.listaMovimientos;
+        for(int i = 0; i<array.length; i++) {
+            if(array[i] != null) {
+            System.out.println(array[i]);
+        }
+        }
+    }
     
       public void agregarMovimiento(String move) {
           listaMovimientos[nroMovimiento] = move;

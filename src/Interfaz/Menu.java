@@ -50,13 +50,13 @@ public class Menu {
                             salir = true;
                             break;
                         case 3:
-                            System.out.println("Ingrese tamaño de fila:");
+                            System.out.println("Defina el tamaño de las filas:");
                             int fila = Prueba.verificoQueSirva(9,3);
                             
-                            System.out.println("Ingrese tamaño de columna:");
+                            System.out.println("Defina el tamaño de las columnas:");
                             int col = Prueba.verificoQueSirva(9,3);
                          
-                            System.out.println("Ingrese nivel:");
+                            System.out.println("Definal el nivel del juego:");
                             int nivel = Prueba.verificoQueSirva(8,1);
                             String filCol = fila + "," + col;
                             Tablero tableroAzar = new Tablero(filCol, nivel);
