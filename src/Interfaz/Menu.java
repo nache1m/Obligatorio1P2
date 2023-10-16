@@ -34,7 +34,8 @@ public class Menu {
                     switch (opcion) {
                         case 1:
                             sistema.iniciarTiempo();
-                            Menu.limpiarConsola();
+                            limpiarConsola();
+                            tutorial();
                             System.out.println("¡Que empiece el juego!");
                             Prueba.realizarMovimiento(Prueba.leerArchivo(sistema),sistema);
                             salir = true;
@@ -43,7 +44,8 @@ public class Menu {
                             Tablero tablero = new Tablero();
                             sistema.setTablero(tablero);
                             tablero.setNivel(3);
-                            Menu.limpiarConsola();
+                            limpiarConsola();
+                            tutorial();
                             System.out.println("¡Que empiece el juego!");
                             sistema.iniciarTiempo();
                             Prueba.realizarMovimiento(tablero, sistema);
@@ -52,17 +54,16 @@ public class Menu {
                         case 3:
                             System.out.println("Defina el tamaño de las filas:");
                             int fila = Prueba.verificoQueSirva(9,3);
-                            
                             System.out.println("Defina el tamaño de las columnas:");
                             int col = Prueba.verificoQueSirva(9,3);
-                         
                             System.out.println("Definal el nivel del juego:");
                             int nivel = Prueba.verificoQueSirva(8,1);
                             String filCol = fila + "," + col;
                             Tablero tableroAzar = new Tablero(filCol, nivel);
                             sistema.iniciarTiempo();
                             sistema.setTablero(tableroAzar);
-                            Menu.limpiarConsola();
+                            limpiarConsola();
+                            tutorial();
                             System.out.println("¡Que empiece el juego!");
                             Prueba.realizarMovimiento(tableroAzar, sistema);
                             salir = true;
@@ -164,7 +165,16 @@ public class Menu {
         }
         return clonada;
     }
-
+    public static void tutorial(){
+        String titulo = "Tutorial del Juego:";
+        String cuerpo = " - Para realizar un movimiento ingrese filas y luego columnas.\n - Para salir del juego ingrese X\n "
+                + "- Para obtener la solución ingrese S.\n - Para obtener los movimimientos realizados ingrese H.\n";
+        int longitud = titulo.length();
+        System.out.println("+" + "-".repeat(longitud + 2) + "+");
+        System.out.println("| " + centrarTexto(titulo, longitud) + " |");
+        System.out.println("+" + "-".repeat(longitud + 2) + "+");
+        System.out.println(cuerpo);
+    }
     public static String centrarTexto(String texto, int longitud) {
         int espacios = (longitud - texto.length()) / 2;
         return " ".repeat(espacios) + texto + " ".repeat(espacios + (longitud - texto.length()) % 2);
