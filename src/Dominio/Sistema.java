@@ -33,16 +33,16 @@ public class Sistema {
         this.tablero = tablero;
     }
     
+    public ArrayList<Jugada> getJugadas() {
+        return listaJugadas;
+    }
+    
     // Constructor.
     public Sistema() {
         listaJugadas = new ArrayList();
     }
 
     // Metodos.
-    public ArrayList<Jugada> getJugadas() {
-        return listaJugadas;
-    }
-
     public void agregarJugada(Jugada j) {
         listaJugadas.add(j);
     }
@@ -106,7 +106,6 @@ public class Sistema {
     public void agregarMovimiento(String move) {
         listaMovimientos[nroMovimiento] = move;
         this.nroMovimiento++;
-
     }
 
     public void iniciarTiempo() {
@@ -120,7 +119,6 @@ public class Sistema {
     public void tiempoFinal() {
         int segundos = (int) (this.horaFinal - this.horaInicio) / 1000;
         int milisegundos = (int) (this.horaFinal - this.horaInicio) % 1000;
-
         System.out.println("Su tiempo fue de " + segundos + " segundos " + milisegundos + " milisegundos ");
     }
 }

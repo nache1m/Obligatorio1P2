@@ -8,13 +8,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 public class Tablero {
-
     private LocalDateTime horaInicio;
-    private int fila;
-    private int nivel;
-
-    private String[][] matrizActual;
     private LocalDateTime horaFinal;
+    private int nivel;
+    private String[][] matrizActual;
     private String[] solucion;
     private String rojoG = "\u001B[31m-\u001B[0m";
     private String azulG = "\u001B[34m-\u001B[0m";
@@ -64,14 +61,6 @@ public class Tablero {
 
     public void setHoraInicio(LocalDateTime horaInicio) {
         this.horaInicio = horaInicio;
-    }
-
-    public int getFila() {
-        return fila;
-    }
-
-    public void setFila(int fila) {
-        this.fila = fila;
     }
 
     public int getNivel() {
@@ -195,7 +184,6 @@ public class Tablero {
                 "";
         };
         return res;
-
     }
 
     public void ejectuarMovimiento(String[][] mat, String Movimiento) {
