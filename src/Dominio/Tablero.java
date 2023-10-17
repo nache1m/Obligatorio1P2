@@ -1,3 +1,4 @@
+// Ignacio Parrado (303400) y Ezequiel Peña (224585).
 package Dominio;
 
 import static Interfaz.Menu.imprimirTablero;
@@ -24,7 +25,7 @@ public class Tablero {
     private String rojoL = "\u001B[31m|\u001B[0m";
     private String azulL = "\u001B[34m|\u001B[0m";
 
-    //Getters y Setters
+    // Gets y Sets.
     public String getRojoG() {
         return this.rojoG;
     }
@@ -97,23 +98,44 @@ public class Tablero {
         this.horaFinal = horaFinal;
     }
 
-    //Métodos
+    public String[] getSolucion() {
+
+        return solucion;
+    }
+
+    public void setSolucion(String[] solucion) {
+        this.solucion = solucion;
+    }
+
+    // Constructores.
+    public Tablero() {
+        matrizActual = new String[][]{
+            {azulL, azulL, rojoG, azulB, rojoL, rojoG},
+            {rojoG, azulB, azulB, azulL, rojoG, rojoG},
+            {rojoG, rojoG, azulL, rojoG, rojoB, rojoG},
+            {rojoCB, rojoG, rojoL, rojoCB, azulL, rojoL},
+            {rojoCB, rojoB, rojoB, azulL, azulB, azulCB}
+        };
+        String sol[] = {"4,4", "5,6", "5,4"};
+        this.solucion = sol;
+    }
+
     public Tablero(String filCol, int nivel) {
-        //Creo arrays con caracteres, rojo y azul y filas y columnas. 
+        // Creo arrays con caracteres, rojo y azul y filas y columnas. 
         String[] rojo = {this.getRojoB(), this.getRojoCB(), this.getRojoG(), this.getRojoL()};
         String[] azul = {this.getAzulB(), this.getAzulCB(), this.getAzulG(), this.getAzulL()};
         String[] array = filCol.split(",");
         int fil = Integer.valueOf(array[0]);
         int col = Integer.valueOf(array[1]);
 
-        //Elijo si la solución final va a ser roja o azul
+        // Elijo si la solución final va a ser roja o azul.
         if (Integer.valueOf(array[0]) % 2 == 0) {
             array = rojo;
         } else {
             array = azul;
         }
         Random random = new Random();
-        //Creo matriz al azar
+        // Creo matriz al azar.
         String[][] mat = new String[fil][col];
 
         for (int i = 0; i < mat.length; i++) {
@@ -124,8 +146,8 @@ public class Tablero {
             }
         }
 
-        //Modifico matriz tantas veces cómo diga el nivel y la seteo a mi atributo. 
-        //Crea array con las soluciones para el ejercicio.
+        // Modifico matriz tantas veces cómo diga el nivel y la seteo a mi atributo. 
+        // Crea array con las soluciones para el ejercicio.
         String[] solucion = new String[nivel];
         for (int i = 0; i < nivel; i++) {
             String movimiento = "";
@@ -144,38 +166,13 @@ public class Tablero {
             this.ejectuarMovimiento(mat, movimiento);
 
         }
+        this.nivel = nivel;
         this.solucion = solucion;
         this.setMatrizActual(mat);
-
     }
 
-    ;
-    
-    public Tablero(String[][] mat) {
-    }
-
-    ;
-    
-    
-    
-    
-    public Tablero() {
-
-        matrizActual = new String[][]{
-            {azulL, azulL, rojoG, azulB, rojoL, rojoG},
-            {rojoG, azulB, azulB, azulL, rojoG, rojoG},
-            {rojoG, rojoG, azulL, rojoG, rojoB, rojoG},
-            {rojoCB, rojoG, rojoL, rojoCB, azulL, rojoL},
-            {rojoCB, rojoB, rojoB, azulL, azulB, azulCB}
-        };
-        String sol[] = {"4,4", "5,6", "5,4"};
-        this.solucion = sol;
-    }
-
-    ;
-    
-    
-     public static String cambiarColor(String objeto) {
+    // Métodos.
+    public static String cambiarColor(String objeto) {
         String res = "";
         res = switch (objeto) {
             case "\u001B[31m-\u001B[0m" ->
@@ -209,7 +206,7 @@ public class Tablero {
 
         String objeto = mat[i][j];
         if (i > -2 && j > -2) {
-            //Guion
+            // Guion.
             if (objeto.equals("\u001B[31m-\u001B[0m") || objeto.equals("\u001B[34m-\u001B[0m")) {
                 for (int k = 0; k < mat[0].length; k++) {
                     mat[i][k] = Tablero.cambiarColor(mat[i][k]);
@@ -217,7 +214,7 @@ public class Tablero {
             }
 
             if (objeto.equals("\u001B[31m/\u001B[0m") || objeto.equals("\u001B[34m/\u001B[0m")) {
-                //Arriba a la derecha
+                // Arriba a la derecha.
                 int fIndice = i;
                 int cIndice = j;
 
@@ -228,7 +225,7 @@ public class Tablero {
                     cIndice += 1;
                 }
 
-                //Abajo a la izquierda
+                // Abajo a la izquierda.
                 fIndice = i + 1;
                 cIndice = j - 1;
 
@@ -239,11 +236,11 @@ public class Tablero {
                     cIndice -= 1;
                 }
 
-            }; //Barra
+            }; // Barra.
 
             if (objeto.equals("\u001B[31m\\\u001B[0m") || objeto.equals("\u001B[34m\\\u001B[0m")) {
 
-                //Arriba a la izquierda
+                // Arriba a la izquierda.
                 int fIndice = i;
                 int cIndice = j;
 
@@ -254,7 +251,7 @@ public class Tablero {
                     cIndice -= 1;
                 }
 
-                //Abajo a la derecha
+                // Abajo a la derecha.
                 fIndice = i + 1;
                 cIndice = j + 1;
 
@@ -264,7 +261,7 @@ public class Tablero {
                     fIndice += 1;
                     cIndice += 1;
                 }
-            }; //ContraBarra
+            }; // ContraBarra.
 
             if (objeto.equals("\u001B[31m|\u001B[0m") || objeto.equals("\u001B[34m|\u001B[0m")) {
 
@@ -272,17 +269,8 @@ public class Tablero {
                     mat[k][j] = Tablero.cambiarColor(mat[k][j]);
                 }
             }
-        }; //Linea
+        }; // Linea.
 
-    }
-
-    public String[] getSolucion() {
-
-        return solucion;
-    }
-
-    public void setSolucion(String[] solucion) {
-        this.solucion = solucion;
     }
 
     public boolean delMismoColor() {
@@ -292,7 +280,7 @@ public class Tablero {
 
         String color = this.matrizActual[0][0];
         String[] array = null;
-        //Me fijo de que color es la matriz.
+        // Me fijo de que color es la matriz.
         for (int i = 0; i < rojo.length; i++) {
             if (color.equals(rojo[i])) {
                 array = rojo;
@@ -304,7 +292,7 @@ public class Tablero {
                 array = azul;
             }
         }
-        //Corroboro que toda la matriz sea del mismo color
+        // Corroboro que toda la matriz sea del mismo color.
 
         for (int i = 0; i < this.matrizActual.length && ret; i++) {
             for (int j = 0; j < this.matrizActual[0].length && ret; j++) {
@@ -319,7 +307,6 @@ public class Tablero {
                 }
             }
         }
-
         return ret;
     }
 

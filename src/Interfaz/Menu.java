@@ -1,3 +1,4 @@
+// Ignacio Parrado (303400) y Ezequiel Peña (224585).
 package Interfaz;
 
 import Dominio.Sistema;
@@ -167,7 +168,7 @@ public class Menu {
     }
     public static void tutorial(){
         String titulo = "Tutorial del Juego:";
-        String cuerpo = " - Para realizar un movimiento ingrese filas y luego columnas.\n - Para salir del juego ingrese X\n "
+        String cuerpo = " - Para realizar un movimiento ingrese nro. de fila y luego nro. de columna.\n - Para salir del juego ingrese X.\n "
                 + "- Para obtener la solución ingrese S.\n - Para obtener los movimimientos realizados ingrese H.\n";
         int longitud = titulo.length();
         System.out.println("+" + "-".repeat(longitud + 2) + "+");

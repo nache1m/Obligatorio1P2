@@ -1,3 +1,4 @@
+// Ignacio Parrado (303400) y Ezequiel Peña (224585).
 package Interfaz;
 
 import Dominio.*;
@@ -14,7 +15,6 @@ public class Prueba {
     }
 
     public static void realizarMovimiento(Tablero tablero, Sistema sistema) throws FileNotFoundException {
-        int cont = 0;
         boolean salir = false;
         imprimirTablero(tablero.getMatrizActual());
         System.out.println("\nIngrese fila (ENTER) y luego la columna (ENTER):");
@@ -46,23 +46,19 @@ public class Prueba {
                         break;
                     }
                 case "-1":
-                    
                     String ret = lector.nextLine();
                     try {
-                        tablero.setMatrizActual(sistema.getJugadas().get(sistema.getJugadas().size() - 1).getTablero()); 
-                         sistema.getJugadas().remove(sistema.getJugadas().size() - 1);
-                            }
-                    catch (IndexOutOfBoundsException e) {
-                            System.out.println("No puedes ir para atrás porque ya no hay más movimientos.");
-                            String fila1 = ingresarFilaValida(largo);
-                            String col1 = lector.nextLine();
-                            String mov1= fila1+ "," + col1;
-                            tablero.ejectuarMovimiento(tablero.getMatrizActual(), mov1);
+                        tablero.setMatrizActual(sistema.getJugadas().get(sistema.getJugadas().size() - 1).getTablero());
+                        sistema.getJugadas().remove(sistema.getJugadas().size() - 1);
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("No puedes ir para atrás porque ya no hay más movimientos.");
+                        String fila1 = ingresarFilaValida(largo);
+                        String col1 = lector.nextLine();
+                        String mov1 = fila1 + "," + col1;
+                        tablero.ejectuarMovimiento(tablero.getMatrizActual(), mov1);
 
                     }
-                   
                     Menu.imprimirTablero(tablero.getMatrizActual());
-                    System.out.println("Linea 5");
                     System.out.println("\nIngrese fila (ENTER) y luego la columna (ENTER):");
                     break;
                 default:
@@ -75,7 +71,6 @@ public class Prueba {
                     tablero.ejectuarMovimiento(tablero.getMatrizActual(), mov);
                     mostrarMovimientoRealizado(mat, tablero.getMatrizActual());
                     j.setTablero(mat);
-                    cont++;
                     if (tablero.delMismoColor()) {
                         sistema.pararTiempo();
                         System.out.println("");
@@ -103,14 +98,14 @@ public class Prueba {
             String mat[][] = new String[fil][col];
             input.nextLine();
             for (int i = 0; i < fil; i++) {
-                String[] linea = input.nextLine().split(" ");
+                String[] linea = input.nextLine().split(" "); // Separo los caracteres por el espacio.
                 for (int j = 0; j < col; j++) {
                     if (linea.length > j) {
                         String aux = linea[j];
-                        char simb = aux.charAt(0);
-                        char color = aux.charAt(1);
+                        char simb = aux.charAt(0); // Elijo el simbolo.
+                        char color = aux.charAt(1); // Elijo color.
                         if (color == 'R') {
-                            String def = "\u001B[31m" + simb + "\u001B[0m";
+                            String def = "\u001B[31m" + simb + "\u001B[0m"; // Verifico si es Rojo o Azul para asignarle color y lugar en matriz.
                             mat[i][j] = def;
                         } else {
                             String def = "\u001B[34m" + simb + "\u001B[0m";
@@ -152,23 +147,6 @@ public class Prueba {
         return res;
     }
 
-    static boolean verificarNumeroInt(int mayor, int menor, int numero) {
-        Boolean res = false;
-
-        if (numero <= mayor && numero >= menor) {
-            res = true;
-        }
-        return res;
-    }
-
-    static int pedirNumeroQueCumplaInt(int mayor, int menor) {
-        System.out.println("No es posible procesar su opción. Por favor ingrese un número menor o igual a " + menor + " y mayor o igual a " + mayor + ".");
-        Scanner lector = new Scanner(System.in);
-        int res = lector.nextInt();
-
-        return res;
-    }
-
     public static int verificoQueSirva(int mayor, int menor) {
         Scanner in = new Scanner(System.in);
         boolean ret = false;
@@ -176,7 +154,6 @@ public class Prueba {
         while (!ret) {
             try {
                 System.out.println("Ingrese número comprendido entre " + menor + " y " + mayor);
-                System.out.print(">");
                 number = in.nextInt();
                 while (!(number <= mayor && number >= menor)) {
                     System.out.println("Ingrese un número comprendido entre " + menor + " y " + mayor);
@@ -198,7 +175,7 @@ public class Prueba {
         String fila = "";
         while (!ret) {
             try {
-              System.out.println("Por favor ingrese un número comprendido entre 1 y " + mayor + ". De lo contrario ingrese X, S o H.");
+                System.out.println("Por favor ingrese un número comprendido entre 1 y " + mayor + ". De lo contrario ingrese X, S o H.");
                 fila = lector.nextLine();
                 int number = Integer.valueOf(fila);
                 while (!(number <= mayor && number >= 1) && !fila.equals("-1")) {
